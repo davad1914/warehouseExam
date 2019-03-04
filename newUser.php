@@ -9,7 +9,7 @@
                 <h5>Felhasználó regisztrálása:</h5>
             </div>
             <div class="card-body">
-                <?php require_once "includes/userForm.php" ?>
+                <?php require_once "userLogic/userForm.php" ?>
             </div>
         </div>
     </div>
