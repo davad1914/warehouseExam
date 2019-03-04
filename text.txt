@@ -1,0 +1,23 @@
+product táblába plusz = cikkszám, megnevezés, mennyiségi egység, listaár, áfakulcs
+
+beszerzési megbízás: purcase order
+készet bevételezési bizonylat : recieve
+
+customer order: ügyfél megrendelés
+raktár kiadási bizonylat: 
+számla: invoice -> számlázz.hu számlázó apival
+storno bizonylat
+
+utca álvány polc doboz = aisle, rack, self(location), bin
+
+több saját company
+
+company alá egy contact
+
+adress tábla a COMPANY-HOZ kötőtáblával
+
+terméktörzs és raktár, company, készletmozgások(bevét, kiad), beszerz. megb., számlázás
+
+operáció kutatás
+
+ügyféligény meghatározás, fejlesztői feladat meghatározása
