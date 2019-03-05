@@ -45,6 +45,7 @@
         <div class="form-group">
             <label for="username">Felhasználónév</label>
             <input type="text" class="form-control" id="username" name="username" placeholder="exampleuser123">
+            <div id="feedback"></div>
         </div>
 <!----------------------------------------- Felhasználónév ------------------------------------------------>
 <!----------------------------------------- Vezetéknév, keresztnév ---------------------------------------->

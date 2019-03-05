@@ -1,59 +1,64 @@
 $(document).ready(function(){
-    //Modal select inputhoz való kódok
-      $("a#modalCategory").click(function(){
-          var string =    '<label for="modalInput" id="modalBody">Felvenni kívánt kategória:</label>' +
-                          '<input type="text" class="form-control" id="modalInput" name="inputCategory">' +
-                          '<div class="invalid-feedback">Olyan vagy mint a babám, mindenben megtalálod a hibát lol :/!</div>';
-          $('div#modalInputFiled').html(string);
-      });
-      
-  
-      /*$("body").on("change paste keyup","#modalInput",function(e){
-          var modalButton = $("#modalSaveButton");
-          if(e.target.value.length >= 3){
-              modalButton.prop("disabled", false);
-          }else{
-              modalButton.prop("disabled", true);
-          }
-      });*/
-  
-      $("a#companyModal").click(function(){
+    //inputok átmeneti ellenőrzése
+    /*$("input").on("change paste keyup", function(){
+        if($(this).val() != ""){
+            $(this).removeClass("is-invalid").addClass("is-valid");
+        }else if($(this).val() == ""){
+            $(this).removeClass("is-valid").addClass("is-invalid");
+        }
+    });
+
+    $("select").change(function(){
+        if($(this).val() != ""){
+            $(this).removeClass("is-invalid").addClass("is-valid");
+        }else if($(this).val() == ""){
+            $(this).removeClass("is-valid").addClass("is-invalid");
+        }
+    });
+
+    $("textarea").on("change paste keyup", function(){
+        if($(this).val() != ""){
+            $(this).removeClass("is-invalid").addClass("is-valid");
+        }else if($(this).val() == ""){
+            $(this).removeClass("is-valid").addClass("is-invalid");
+        }
+    });*/
+
+
+    $("#username").on("change paste keyup", function(){
+        var illegalChars = new RegExp( "/^[a-zA-Z0-9]+$/" );
+        var username = $("#username");
+        var feedback = $("#feedback");
+        if(username.val() != ""){
+            username.removeClass("is-invalid").addClass("is-valid");
+            feedback.removeAttr("class").addClass("valid-feedback").html("Megfelelő Felhasználónév!");
+        }else if(illegalChars.test(username)){
+            username.removeClass("is-valid").addClass("is-invalid");
+            feedback.removeAttr("class").addClass("invalid-feedback").html("Helytelen karaktert tartalmaz!");
+            alert("helyes");
+        }else{
+            username.removeClass("is-valid").addClass("is-invalid");
+            feedback.removeAttr("class").addClass("invalid-feedback").html("Helytelen!");
+        }
+    });
+
+
+    //Modal létrehozása, egyben ellenőrzése
+    $("a#companyModal").click(function(){
           var string =    '<label for="companyName">Felvenni kívánt cég:</label>' +
                           '<input type="text" class="form-control" id="companyName" name="companyName">' +
                           '<div class="invalid-feedback">Kitöltése kötelező!</div>' +
                           '<label for="companyAddress">Cég címe:</label>' +
                           '<input type="text" class="form-control" id="companyAddress" name="companyAddress">' +
+                          '<div class="invalid-feedback">Kitöltése kötelező!</div>' +
                           '<label for="companyEmail">Cég email</label>' +
-                          '<input type="email" class="form-control" id="companyEmail" name="companyEmail">';
+                          '<input type="email" class="form-control" id="companyEmail" name="companyEmail">' +
+                          '<div class="invalid-feedback">Kitöltése kötelező!</div>';
           $('div#modalInputFiled').html(string);
       });
-
-      $("input").on("change paste keyup", function(){
-          if($(this).val() != ""){
-              $(this).removeClass("is-invalid").addClass("is-valid");
-          }else if($(this).val() == ""){
-              $(this).removeClass("is-valid").addClass("is-invalid");
-          }
-      });
-  
-      $("select").change(function(){
-          if($(this).val() != ""){
-              $(this).removeClass("is-invalid").addClass("is-valid");
-          }else if($(this).val() == ""){
-              $(this).removeClass("is-valid").addClass("is-invalid");
-          }
-      });
-  
-      $("textarea").on("change paste keyup", function(){
-          if($(this).val() != ""){
-              $(this).removeClass("is-invalid").addClass("is-valid");
-          }else if($(this).val() == ""){
-              $(this).removeClass("is-valid").addClass("is-invalid");
-          }
-      });
-  
   });
 
+  //Modal validation innentől az egész
   function validateModal() {
     //cég modal inputja
         var modalInput = $("#companyName").val();
@@ -69,12 +74,12 @@ $(document).ready(function(){
         }else{
             $("#companyAddress").removeClass("is-invalid");
         }
-        if(modalInput2 == ""){
+        if(modalInput3 == ""){
             $("#companyEmail").addClass("is-invalid");
         }else{
             $("#companyEmail").removeClass("is-invalid");
         }
-        if(modalInput != ""){
+        if(modalInput != "" && modalInput2 != "" && modalInput3 != ""){
             $("#kek").prop( "disabled", true );
             $("#manufacturerName").removeClass("is-invalid");
             $("#kek").html('<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>Töltés...');
@@ -84,7 +89,7 @@ $(document).ready(function(){
                 $( "#insertModal" ).modal('toggle');
                 $("#kek").prop( "disabled", false );
                 $("#kek").html('Hozzáadás');
-                window.location.href = "includes/insertToDatabase.php?action=manufacturer&text=" + modalInput + "&text2=" + modalInput2 + "&text3=" + modalInput3;
+                window.location.href = "userLogic/userSignup.php?action=company&text=" + modalInput + "&text2=" + modalInput2 + "&text3=" + modalInput3;
             }
     }}
   
