@@ -21,3 +21,20 @@ terméktörzs és raktár, company, készletmozgások(bevét, kiad), beszerz. me
 operáció kutatás
 
 ügyféligény meghatározás, fejlesztői feladat meghatározása
+
+
+Beszállításnál termék felvitele, elősször be kell írni a cikkszámot és aszerint eldönteni, hogy új terméket veszünk fel,
+vagy meglévő termék darabszámát növeljük.
+Ha meglévőt növelünk, akkor csak a darabszámot kéri, és a raktárhelyet.
+
+Kiszállításhoz szükséges a cikkszám, vagy bármely termék azonosítására alkalmas információ (pl. név). Ezek után a Raktárak listája következik,
+ahol megtalálható a termék. Ezek után létrehoz egy FPDF-et a weboldal, amit adatbázisban tárol megrendelés azonosító alapján.
+Az aktív kiszállításokat kilistázza a weblap, itt egyben vissza is lehet vonni, egy storno bizonylattal.
+
+
+
+////////////////////////
+Sony márkaszervíz
+Hírös electro wing kft.
+36706158858
+706279222

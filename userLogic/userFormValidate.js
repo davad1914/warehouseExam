@@ -1,6 +1,6 @@
 $(document).ready(function(){
     //inputok átmeneti ellenőrzése
-    /*$("input").on("change paste keyup", function(){
+    $("input").on("change paste keyup", function(){
         if($(this).val() != ""){
             $(this).removeClass("is-invalid").addClass("is-valid");
         }else if($(this).val() == ""){
@@ -22,26 +22,7 @@ $(document).ready(function(){
         }else if($(this).val() == ""){
             $(this).removeClass("is-valid").addClass("is-invalid");
         }
-    });*/
-
-
-    $("#username").on("change paste keyup", function(){
-        var illegalChars = new RegExp( "/^[a-zA-Z0-9]+$/" );
-        var username = $("#username");
-        var feedback = $("#feedback");
-        if(username.val() != ""){
-            username.removeClass("is-invalid").addClass("is-valid");
-            feedback.removeAttr("class").addClass("valid-feedback").html("Megfelelő Felhasználónév!");
-        }else if(illegalChars.test(username)){
-            username.removeClass("is-valid").addClass("is-invalid");
-            feedback.removeAttr("class").addClass("invalid-feedback").html("Helytelen karaktert tartalmaz!");
-            alert("helyes");
-        }else{
-            username.removeClass("is-valid").addClass("is-invalid");
-            feedback.removeAttr("class").addClass("invalid-feedback").html("Helytelen!");
-        }
     });
-
 
     //Modal létrehozása, egyben ellenőrzése
     $("a#companyModal").click(function(){
