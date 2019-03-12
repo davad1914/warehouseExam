@@ -1,3 +1,4 @@
+<?php define("baseDIR",dirname(__FILE__)); ?>
 <!DOCTYPE html>
 <html lang="hu">
 <head>

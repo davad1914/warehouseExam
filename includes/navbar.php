@@ -1,6 +1,6 @@
 <?php include_once "includes/loginChecker.php" ?>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffab96;">
-  <a class="navbar-brand" href="#"> 
+  <a class="navbar-brand" href="logged.php"> 
     <i class="material-icons">
       fiber_smart_record
     </i>
@@ -12,8 +12,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
-      <li class="nav-item active">
-        <a class="nav-link" href="logged.php">Raktárak<span class="sr-only">(jelenlegi)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="stockList.php">Raktárak<span class="sr-only">(jelenlegi)</span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -26,11 +26,11 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Folyamat felvitel
+          Folyamatok
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Rendelés</a>
-          <a class="dropdown-item" href="#">Szállítás</a>
+          <a class="dropdown-item" href="addProductToStock.php">Termékek felvitele</a>
+          <a class="dropdown-item" href="#">Kiszállítás</a>
         </div>
       </li>
       <?php if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "1") : ?>
