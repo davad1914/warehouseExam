@@ -1,5 +1,5 @@
 <?php
-include_once "db.php";
+/*include_once "db.php";
 $db = db::get();
 $queryString = "SELECT `product_item_number`, `product_name`, `id` FROM `products`";
 $products = $db->getArray($queryString);
@@ -26,5 +26,20 @@ if ($q !== "") {
 }
 
 // Output "no suggestion" if no hint was found or output correct values 
-echo $hint === "" ? "" : $hint;
+echo $hint === "" ? "" : $hint;*/
+
+    require_once 'db.php';
+    $db = db::get();
+
+    $q=$_REQUEST["term"];
+    $sql="SELECT * FROM `products` WHERE `product_item_number` LIKE '%$q%'";
+    $array = $db->getArray($sql);
+
+    $json=array();
+
+    foreach($array as $listItem) {
+      array_push($json, $listItem['product_item_number']);
+    }
+
+    echo json_encode($json);
 ?>

@@ -15,11 +15,8 @@
 }
 </style>
 
-<div class="card">
-    <div class="card-header" style="background-color: #ffab96;">
-        <h4>Termék akció</h4>
-    </div>
-    <div class="card-body">
+
+    
         <form method="POST" enctype="multipart/form-data">
         <!---------- Form kezdete ---------->
         <!---------------------------- alertek -------------------------------------->
@@ -55,7 +52,9 @@
                     </div>
                     <div class="form-group col">
                     <label for="productItemNumber">Cikkszám</label>
-                    <input type="text" class="form-control" id="productItemNumber" name="product_item_number" placeholder="cikkszám">
+                    <input type="text" class="form-control" id="productItemNumber" name="product_item_number" placeholder="cikkszám"
+                        value="<?php echo (isset($_GET["productNumber"]) ? $_GET["productNumber"] : "") ?>"
+                    >
                     <div class="valid-feedback">
                         Jónak tűnik!
                     </div>
@@ -149,12 +148,12 @@
                         <input type="file" class="custom-file-input" name="productImage" id="productImage">
                         <label class="custom-file-label" for="productImage">Válassz képet!</label>
                     </div>
-                <hr>
-                <button class="btn btn-info" name="saveButton" type="submit">Mentés</button>
-                <a href="products.php" class="btn btn-warning">Mégse</a>
+                    <hr>
+                <?php if(isset($kek)) : ?>
+                    <button class="btn btn-info" name="saveButton" type="submit">Mentés</button>
+                    <a href="products.php" class="btn btn-warning">Mégse</a>
+                <?php endif; ?>
         </form>
-    </div>
-</div>
 
 
 
