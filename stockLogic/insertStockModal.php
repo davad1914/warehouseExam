@@ -140,9 +140,10 @@ if(isset($_POST['productNumber']) && isset($_POST['stockName']) && isset($_POST[
 
    include_once "../includes/db.php";
    $db = db::get();
-   $queryString = "SELECT `product_name` FROM `products` WHERE `product_item_number` = ".$_POST["productNumber"];
+   $queryString = "SELECT `product_name`, `product_price` FROM `products` WHERE `product_item_number` = ".$_POST["productNumber"];
    $productArray = $db->getRow($queryString);
    $productNumber = $_POST["productNumber"];
+   $productQuantity = $_POST["productQuantity"];
    $stockName = $_POST["stockName"];
    $aisle = $_POST["aisle"];
    $rack = $_POST["rack"];
@@ -151,7 +152,9 @@ if(isset($_POST['productNumber']) && isset($_POST['stockName']) && isset($_POST[
    $count = $_SESSION["count"];
    
    $_SESSION["productName"][$count] = $productArray["product_name"];
+   $_SESSION["productPrice"][$count] = $productArray["product_price"];
    $_SESSION["productNumber"][$count] = $productNumber;
+   $_SESSION["productQuantity"][$count] = $productQuantity;
    $_SESSION["stockName"][$count] = $stockName;
    $_SESSION["aisle"][$count] = $aisle;
    $_SESSION["rack"][$count] = $rack;
@@ -160,20 +163,20 @@ if(isset($_POST['productNumber']) && isset($_POST['stockName']) && isset($_POST[
 
    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    $placeQuery =  
-   "SELECT own_companies.company_name, aisle.aisle_number, racks.rack_number, shelf.shelf_number, bin.bin_number 
-   FROM own_companies, aisle, racks, shelf, bin 
-   WHERE own_companies.company_id= ".$_POST["productNumber"]."
+   "SELECT stock_places.stock_name, aisle.aisle_number, racks.rack_number, shelf.shelf_number, bin.bin_number 
+   FROM stock_places, aisle, racks, shelf, bin 
+   WHERE stock_places.stock_id= ".$_SESSION["stockName"][$count]."
    AND aisle.aisle_id = ".$_SESSION["aisle"][$count]."
    AND racks.rack_id= ".$_SESSION["rack"][$count]."
    AND shelf.shelf_id= ".$_SESSION["shelf"][$count]."
    AND bin.bin_id = ".$_SESSION["bin"][$count];
    $row = $db->getRow($placeQuery);
-   $_SESSION["place"][$count] = $row["company_name"]." ".$row["aisle_number"]." ".$row["rack_number"]." ".$row["shelf_number"]." ".$row["bin_number"];
+   $_SESSION["place"][$count] = $row["stock_name"].' | '.$row["aisle_number"].' | '.$row["rack_number"].' | '.$row["shelf_number"].' | '.$row["bin_number"];
    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    $_SESSION["count"] = $_SESSION["count"] + 1;
-   echo var_dump($_SESSION["productNumber"]);
-   echo var_dump($_SESSION["count"]);
+   //echo var_dump($_SESSION["productNumber"]);
+   //echo var_dump($_SESSION["count"]);
 }
 
 if(isset($_POST["productNumber"]) && isset($_POST["action"]) && $_POST["action"] == "checkProductNumber"){

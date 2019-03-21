@@ -1,10 +1,8 @@
 <?php include_once "includes/loginChecker.php" ?>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffab96;">
-  <a class="navbar-brand" href="logged.php"> 
-    <i class="material-icons">
-      fiber_smart_record
-    </i>
-  </a>
+    <a class="navbar-brand" href="#">
+      <img src="img/logo/miniLogo.png" href="logged.php" width="30" height="30" alt="">
+    </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -14,6 +12,9 @@
 
       <li class="nav-item">
         <a class="nav-link" href="stockList.php">Raktárak<span class="sr-only">(jelenlegi)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="supplyList.php">Beszerzések</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,7 +31,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="addProductToStock.php">Termékek felvitele</a>
-          <a class="dropdown-item" href="#">Kiszállítás</a>
+          <a class="dropdown-item" href="delivery.php">Kiszállítás</a>
         </div>
       </li>
       <?php if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "1") : ?>
@@ -38,12 +39,23 @@
         <a class="nav-link" href="userList.php">Felhasználók kezelése</a>
       </li>
       <?php endif; ?>
-
     </ul>
-    <form  method="POST" class="form-inline my-2 my-lg-0">
-      <button class="btn btn-info my-2 my-sm-0" type="submit" name="signoutButton">Kijelentkezés</button>
-      <?php include_once "includes/signout.php" ?>
-    </form>
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+        <li class="nav-item">
+          <a href="basketList.php" class="nav-link"><i class="material-icons">shopping_basket</i></a>
+        </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">
+              account_box
+            </i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="includes/profile.php">Profil</a>
+            <a class="dropdown-item" href="includes/signout.php">Kijelentkezés</a>
+          </div>
+        </li>
+        </ul>
   </div>
 </nav>
 <br>

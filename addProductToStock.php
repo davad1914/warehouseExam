@@ -83,6 +83,10 @@
                                     <small id="smallBin"></small>
                                 </div>
                     </div>
+                    
+                    <label for="productQuantity">Darabszám</label>
+                    <input type="number" min="1" class="form-control" name="productQuantity" id="productQuantity" placeholder="Adj meg egy darabszámot">
+                    <br>
 
                 <!--<button class="btn btn-info"><i class="material-icons" onclick="allData()">save</i></button>-->
                 <div class="float-right <?php echo (!isset($_SESSION["productNumber"]) ? "d-none" : "") ?>" id="inputEnd">

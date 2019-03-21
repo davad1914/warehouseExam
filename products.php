@@ -59,7 +59,7 @@
                     <p><?php echo $listItem["product_description"] ?></p>
                     <p><b><?php echo $listItem["product_price"]; echo "Ft" ?></b></p>
                     <div><small> <?php echo "Áfa: "; echo $listItem["product_vat"]; ?> </small></div>
-                        <a href="#viewProduct.php" class="btn btn-primary">Megnéz</a>
+                        <a href="viewProduct.php?product=<?php echo $listItem["id"] ?>" class="btn btn-primary">Részlet</a>
                 </div>
             </div>
         </div>

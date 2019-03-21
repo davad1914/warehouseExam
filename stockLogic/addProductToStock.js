@@ -212,7 +212,8 @@ function setBin(){
 function allData(){
     var params = 
             "productNumber=" + $('#productNumber').val() + 
-            "&stockName=" + $('#stockName').val() + 
+            "&productQuantity=" + $('#productQuantity').val() +
+            "&stockName=" + $('#stockName').val() +
             "&aisle=" + $('#aisle').val() + 
             "&rack=" + $('#rack').val() + 
             "&shelf=" + $('#shelf').val() + 

@@ -21,6 +21,7 @@
                 }
                 elseif($passhash === true)
                 {
+                    $_SESSION["user_id"] = $row["user_id"];
                     $_SESSION["username"] = $row["username"];
                     $_SESSION["user_company"] = $row["user_company"];
                     $_SESSION["user_role"] = $row["user_role"];
