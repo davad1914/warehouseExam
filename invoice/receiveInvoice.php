@@ -5,7 +5,6 @@ $userDataQueryString = "SELECT * FROM users WHERE user_id =".$_SESSION["user_id"
 $userData = $db->getRow($userDataQueryString);
 $billProducts = "";
 $amountPrice = 0;
-$invoiceNumber = $_SESSION["user_id"].$_SESSION["user_company"].date('ymdhms').rand(10000, 99999);
 
 /*
  * INVOICR : THE PHP INVOICE GENERATOR (HTML, DOCX, PDF)
@@ -23,54 +22,63 @@ $invoice = new Invoicr();
 // 2A - COMPANY INFORMATION
 // OR YOU CAN PERMANENTLY CODE THIS INTO THE LIBRARY ITSELF
 $invoice->set("company", [
-    "../img/logo/logo.png",
-    $userCompanyData["company_name"],
-    $userCompanyData["company_address"],
-    "Telefonszám: ".$userCompanyData["company_phone_number"],
-    $userCompanyData["company_website"],
-    $userCompanyData["company_email"]
+	"../img/logo/logo.png",
+	$userCompanyData["company_name"],
+	$userCompanyData["company_address"],
+	"Phone: 111-222-333 | Fax: 111-444-555",
+	"www.google.com",
+	"info@lightpear.com"
 ]);
 
 // 2B - INVOICE INFO
 $invoice->set("invoice", [
-    ["Számla száma", $invoiceNumber],
-    ["Kiállítva", date("Y-m-d")]
+	["Számla száma", "CB-123-456"],
+	["Kiállítva", date("Y-m-d")]
 ]);
 
 // 2C - BILL TO
 $invoice->set("billto", [
-    $_POST['billCustomerName'],
-    $_POST['billCountry'],
-    $_POST['billStreetAddress'].', '.$_POST['billZip'].', '.$_POST['billCity']
+	$userData["username"],
+	"Street Address",
+	"City, State, Zip"
 ]);
 
 // 2D - SHIP TO
 $invoice->set("shipto", [
-    $_POST['customerName'],
-    $_POST['country'],
-    $_POST['streetAddress'].', '.$_POST['zip'].', '.$_POST['city']
+	"Customer Name",
+	"Street Address",
+	"City, State, Zip"
 ]);
 
 // 2E - ITEMS
 // YOU CAN JUST DUMP THE ENTIRE ARRAY IN USING SET, BUT HERE IS HOW TO ADD ONE AT A TIME...
-for($i = 1; $i < $_SESSION["basketCount"]; $i++){
-    $productsInfoQuery = "SELECT * FROM products WHERE id=(SELECT product_id FROM where_is_the_product WHERE where_is_the_product.id = ".$_SESSION['basketProductId'][$i].")";
-    $productInfo = $db->getRow($productsInfoQuery);
-    $invoice->add("items", [$_SESSION["basketProduct"][$i],"", $_SESSION["basketQuantity"][$i], $productInfo['product_price']." Ft", $productInfo['product_price'] * $_SESSION["basketQuantity"][$i]." Ft"]);
-    $amountPrice += (int)($productInfo['product_price']) * (int)($_SESSION["basketQuantity"][$i]);
+for($i = 1; $i < $_SESSION["count"]; $i++){
+	$invoice->add("items", [$_SESSION["productName"][$i],"", $_SESSION["productQuantity"][$i], $_SESSION["productPrice"][$i]." Ft", $_SESSION["productPrice"][$i] * $_SESSION["productQuantity"][$i]." Ft"]);
+	$amountPrice += $_SESSION["productPrice"][$i] * $_SESSION["productQuantity"][$i];
 }
 //$items = $billProducts;
 //foreach ($items as $i) { $invoice->add("items", $i); }
 
+/*
+$_SESSION["productName"][$count] = $productArray["product_name"];
+$_SESSION["productNumber"][$count] = $productNumber;
+$_SESSION["productQuantity"][$count] = $productQuantity;
+$_SESSION["stockName"][$count] = $stockName;
+$_SESSION["aisle"][$count] = $aisle;
+$_SESSION["rack"][$count] = $rack;
+$_SESSION["shelf"][$count] = $shelf;
+$_SESSION["bin"][$count] = $bin;
+*/
+
 // 2F - TOTALS
 $invoice->set("totals", [
-    ["Összesen", $amountPrice." Ft"]
+	["Összesen", $amountPrice." Ft"]
 ]);
 
 // 2G - NOTES, IF ANY
 $invoice->set("notes", [
-    "A számla csak teszt, nem minősül érvényes számlának!",
-    "A rendzser állítja ki automatikusan, hibák joga fent áll!"
+	"Ez a számla a bevételezési bizonylatot helyettesíti!",
+	"A rendzser állítja ki automatikusan!"
 ]);
 
 
@@ -91,7 +99,7 @@ $invoice->template("lime");
 // $invoice->outputPDF();
 // $invoice->outputPDF(1);
 // $invoice->outputPDF(2, "invoice.pdf");
-$invoice->outputPDF(3, __DIR__ . DIRECTORY_SEPARATOR . "delivery" . DIRECTORY_SEPARATOR . $pdfFileName);
+ $invoice->outputPDF(3, __DIR__ . DIRECTORY_SEPARATOR . "receive" . DIRECTORY_SEPARATOR . $pdfFileName);
 /*****************************************************************************/
 // 3D - DOCX OUTPUT
 // DEFAULT FORCE DOWNLOAD| 1 FORCE DOWNLOAD | 2 SAVE ON SERVER

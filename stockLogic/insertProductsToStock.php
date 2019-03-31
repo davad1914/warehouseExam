@@ -18,7 +18,9 @@ for($i = 1; $i < $_SESSION["count"]; $i++){
     $db->query($queryString);
 }
 
-include_once "../invoice/deliveryInvoice.php";
+include_once "../invoice/receiveInvoice.php";
+
+include_once "unsetSession.php";
 
 header('Location: ../supplyList.php');
 exit();

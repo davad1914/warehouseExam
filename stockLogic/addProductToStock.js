@@ -231,7 +231,7 @@ function allData(){
         if(httpc.readyState == 4 && httpc.status == 200) { // complete and no errors
             //alert(httpc.responseText); // some processing here, or whatever you want to do with the response
             $('#inputEnd').removeClass('d-none');
-            alert(this.responseText);
+            //alert(this.responseText);
             count++;
         }
     };

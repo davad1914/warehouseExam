@@ -39,9 +39,9 @@ $invoice->set("invoice", [
 
 // 2C - BILL TO
 $invoice->set("billto", [
-    $_POST['billCustomerName'],
-    $_POST['billCountry'],
-    $_POST['billStreetAddress'].', '.$_POST['billZip'].', '.$_POST['billCity']
+    $_POST['customerName'],
+    $_POST['country'],
+    $_POST['streetAddress'].', '.$_POST['zip'].', '.$_POST['city']
 ]);
 
 // 2D - SHIP TO

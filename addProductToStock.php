@@ -6,7 +6,7 @@
     $listStockQueryString = "SELECT `stock_id`, `stock_name` FROM `stock_places`";
     $stockPlaces = $db->getArray($listStockQueryString);
 
-    echo var_dump($_SESSION["productNumber"]);
+    //echo var_dump($_SESSION["productNumber"]);
 ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="js/jquery-3.3.1.min.js"></script>

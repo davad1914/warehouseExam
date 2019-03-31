@@ -1,11 +1,21 @@
 <?php 
+    (isset($_GET["page"]) ? "" : $_GET["page"] = 1);
+    ($_GET["page"] == "" ? $_GET["page"] = 1 : "");
     include_once "includes/header.php";
     include_once "includes/navbar.php";
     include_once "includes/db.php";
-
     $db = db::get();
-    $listQueryString = "SELECT receive.receive_id, receive.receive_date, receive.receive_pdf, users.username FROM `receive`, `users` WHERE users.user_id = receive.receive_user ORDER BY receive.receive_date DESC";
-    $result = $db->query($listQueryString);
+    $listQueryString = "SELECT receive.receive_id, receive.receive_date, receive.receive_pdf, users.username FROM `receive`, `users` WHERE users.user_id = receive.receive_user ORDER BY receive.receive_date DESC LIMIT 10 OFFSET ".($_GET["page"] - 1) * 10;
+    $result = $db->getArray($listQueryString);
+    $tableRowNumbers = "SELECT count(*) AS db FROM receive";
+    $rowQuantity = $db->getRow($tableRowNumbers);
+    $pageQuantity = (int)($rowQuantity["db"] / 10);
+    $currentPage = basename(__FILE__);
+    //var_dump($currentPage);
+    //var_dump($rowQuantity);
+    ($rowQuantity["db"] % 10 > 0 ? $pageQuantity++ : "");
+    //var_dump($rowQuantity["db"]);
+    //var_dump($pageQuantity);
 ?>
 
 <script src="js/jquery-3.3.1.min.js"></script>
@@ -16,7 +26,7 @@
             <div class="card-header">
                 <h4>Beszerzési megbízások</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body" style="padding-bottom: 0px;">
                 <?php if($result != null) : ?>
                     <table class="table">
                         <thead>
@@ -44,10 +54,14 @@
                         
                     </table>
                 <?php endif; ?>
+
+
+
             </div>
         </div>
     </div>
 
+    <?php include_once "includes/paginator.php" ?>
 
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="showProductsModal">
         <div class="modal-dialog modal-lg" role="document">

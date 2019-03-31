@@ -13,25 +13,23 @@
       <li class="nav-item">
         <a class="nav-link" href="stockList.php">Raktárak<span class="sr-only">(jelenlegi)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="supplyList.php">Beszerzések</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Számlák
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="supplyList.php">Beszerzési számlák</a>
+            <a class="dropdown-item" href="orderList.php">Megrendelési Számlák</a>
+        </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Termékek
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="products.php">Klistázás</a>
-          <a class="dropdown-item" href="newProduct.php">Felvitel</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Folyamatok
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="addProductToStock.php">Termékek felvitele</a>
-          <a class="dropdown-item" href="delivery.php">Kiszállítás</a>
+          <a class="dropdown-item" href="products.php">Termék lista</a>
+          <a class="dropdown-item" href="newProduct.php">Felvitel az adatbázisba</a>
+          <a class="dropdown-item" href="addProductToStock.php">Felvitel a raktárba</a>
         </div>
       </li>
       <?php if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "1") : ?>

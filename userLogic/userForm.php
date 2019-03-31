@@ -148,7 +148,7 @@
         </div>
     </div>
         <!---------------------------------------------- Submit button ----------------------------------------------->
-        <button type="submit" class="btn btn-primary" name="registerButton">Módosítás</button>
+        <button type="submit" class="btn btn-primary" name="registerButton"><?php echo (isset($_GET["user"]) ? "Módosítás" : "Regisztráció") ?></button>
         <a class="btn btn-warning" href="userList.php">Mégse</a>
 </form>
 
