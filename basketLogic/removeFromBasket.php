@@ -11,10 +11,10 @@ $allQuantity = (int)($_SESSION["basketQuantity"][$_GET["item"]]) + (int)($quanti
 $updateString = "UPDATE `where_is_the_product` SET `quantity`=".$allQuantity." WHERE id=".$_SESSION["basketProductId"][$_GET["item"]];
 $db->query($updateString);
 
+$_SESSION["basketCount"] = (int)($_SESSION["basketCount"]) - 1;
 unset($_SESSION["basketProductId"][$_GET["item"]]);
 unset($_SESSION["basketProduct"][$_GET["item"]]);
 unset($_SESSION["basketQuantity"][$_GET["item"]]);
-$_SESSION["basketCount"] = $_SESSION["basketCount"] - 1;
 
 //var_dump($updateString);
 //var_dump($_SESSION["basketProductId"]);

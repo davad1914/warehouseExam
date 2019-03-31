@@ -6,6 +6,8 @@
         //echo var_dump($_SESSION["basketCount"]);
         if (!isset($_SESSION["basketCount"])) {
             $_SESSION["basketCount"] = 1;
+        }else{
+            $_SESSION["basketCount"] = $_SESSION["basketCount"] + 1;
         }
         $basketCount = $_SESSION["basketCount"];
 
@@ -22,7 +24,7 @@
         $_SESSION["basketProductId"][$basketCount] = $_POST["whereId"];
         $_SESSION["basketProduct"][$basketCount] = $productName["product_name"];
         $_SESSION["basketQuantity"][$basketCount] = $_POST["orderQuantity"];
-        $_SESSION["basketCount"] = $_SESSION["basketCount"] + 1;
+        $_SESSION["basketAllProductQuantity"]++;
     }
 
     //echo var_dump($afterQuantity);

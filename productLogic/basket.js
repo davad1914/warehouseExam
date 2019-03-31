@@ -9,13 +9,15 @@ function addToBasket(product,quantity){
     httpc.onreadystatechange = function() { //Call a function when the state changes.
         if(httpc.readyState == 4 && httpc.status == 200) { // complete and no errors
             //alert(httpc.responseText); // some processing here, or whatever you want to do with the response
+            $('#basket_modal').modal('hide');
+            location.reload();
         }
     };
     httpc.send(params);
 }
 
 function basketModal(product, quantity){
-    $('#basket_modal').modal('show')
+    $('#basket_modal').modal('show');
     $('#modal_title').html('Termék felvétele kosárba');
     $('#modal_body').html(
         '<label for="product_quantity">Darabszám:</label>' +

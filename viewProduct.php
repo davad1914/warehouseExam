@@ -101,7 +101,7 @@
                 </button>
             </div>
             <div class="modal-body" id="modal_body">
-                <p>Modal body text goes here.</p>
+                <p></p>
             </div>
             <div class="modal-footer" id="modal_footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

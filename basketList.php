@@ -3,7 +3,11 @@
     include_once "includes/navbar.php";
     include_once "includes/db.php";
     $db = db::get();
+    var_dump($_SESSION['basketProductId']);
+    var_dump($_SESSION["basketCount"]);
+    var_dump($_SESSION["basketAllProductQuantity"]);
 ?>
+
 
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="basketLogic/basketLogic.js"></script>
@@ -28,7 +32,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php for($i = 1;$i < $_SESSION["basketCount"]; $i++) : ?>
+                    <?php for($i = 1;$i <= $_SESSION["basketAllProductQuantity"]; $i++) : ?>
                         <?php if(!empty($_SESSION["basketProduct"][$i])) : ?>
                             <tr>
                                 <?php //include_once "basketLogic/productDetail.php";

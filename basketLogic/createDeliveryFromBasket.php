@@ -49,6 +49,7 @@
     unset($_SESSION["basketProduct"]);
     unset($_SESSION["basketQuantity"]);
     unset($_SESSION["basketCount"]);
+    unset($_SESSION["basketAllProductQuantity"]);
 
     //var_dump($pdfFileName);
     //var_dump($invoiceInsertString);
