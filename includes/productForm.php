@@ -30,6 +30,7 @@
                 <?php 
                     echo ($_GET["error"] == "empty" ? "Minden mező kitöltése kötelező!" : "" );
                     echo ($_GET["error"] == "db" ? "Ismeretlen hiba, kérem forduljon rendszergazdához!" : "" );
+                    echo ($_GET["error"] == "image" ? "A választott kép nem megfelelő" : "" );
                 ?>
             </div>
         <?php endif; ?>

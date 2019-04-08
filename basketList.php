@@ -3,9 +3,9 @@
     include_once "includes/navbar.php";
     include_once "includes/db.php";
     $db = db::get();
-    var_dump($_SESSION['basketProductId']);
-    var_dump($_SESSION["basketCount"]);
-    var_dump($_SESSION["basketAllProductQuantity"]);
+    //var_dump($_SESSION['basketProductId']);
+    //var_dump($_SESSION["basketCount"]);
+    //var_dump($_SESSION["basketAllProductQuantity"]);
 ?>
 
 

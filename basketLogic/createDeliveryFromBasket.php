@@ -9,11 +9,11 @@
         $invoiceInsertString = "
             INSERT INTO `invoice`(`invoice_user`, `invoice_customer_name`, `delivery_country`, `delivery_address`, `invoice_pdf`) 
             VALUES (
-              ".$_SESSION['user_id'].",
-              '".$_POST["customerName"]."',
-              '".$_POST["country"]."',
-              '".$_POST["zip"]."-".$_POST["city"]."-".$_POST["streetAddress"]."',
-              '".$pdfFileName."'
+              ".$db->escape($_SESSION['user_id']).",
+              '".$db->escape($_POST["customerName"])."',
+              '".$db->escape($_POST["country"])."',
+              '".$db->escape($_POST["zip"])."-".$db->escape($_POST["city"])."-".$db->escape($_POST["streetAddress"])."',
+              '".$db->escape($pdfFileName)."'
             )
         ";
         $db->query($invoiceInsertString);
@@ -29,10 +29,10 @@
             $insertQueryString = "
                   INSERT INTO `delivery`(`delivery_user`, `delivery_product`, `delivery_quantity`, `delivery_invoice`) 
                   VALUES (
-                    " . $_SESSION["user_id"] . ",
-                    " . $productIdResult['product_id'] . ",
-                    " . $_SESSION['basketQuantity'][$i] . ",
-                    " . $invoiceId['invoice_id'] . "
+                    " . $db->escape($_SESSION["user_id"]) . ",
+                    " . $db->escape($productIdResult['product_id']) . ",
+                    " . $db->escape($_SESSION['basketQuantity'][$i]) . ",
+                    " . $db->escape($invoiceId['invoice_id']) . "
             )";
             $db->query($insertQueryString);
         }

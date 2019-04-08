@@ -11,16 +11,16 @@ $db = db::get();
 
     if(isset($_GET["action"]) && $_GET["action"] != ""){
         if (isset($_GET["text"]) && $_GET["text"] != "" && $_GET["action"] == "category") {
-            $modalInput = $_GET["text"];
+            $modalInput = $db->escape($_GET["text"]);
             $queryString = "INSERT INTO `product_category`(`category_name`) VALUES ('".$modalInput."')"; 
         }elseif(isset($_GET["text"]) && $_GET["text"] != "" && isset($_GET["text2"]) && $_GET["text2"] != "" && $_GET["action"] == "unit"){
-            $unitName = $_GET["text"];
-            $shortUnitName = $_GET["text2"];
+            $unitName = $db->escape($_GET["text"]);
+            $shortUnitName = $db->escape($_GET["text2"]);
             $queryString = "INSERT INTO `unit_type`(`unit_name`, `unit_short_name`) VALUES ('".$unitName."', '".$shortUnitName."')";
         }elseif(isset($_GET["text"]) && $_GET["text"] != "" && $_GET["action"] == "manufacturer"){
-            $manufacturerName = $_GET["text"];
-            $manufacturerAddress = ($_GET["text2"] != "" ? $_GET["text2"] : null);
-            $manufacturerEmail = ($_GET["text3"] != "" ? $_GET["text3"] : null);
+            $manufacturerName = $db->escape($_GET["text"]);
+            $manufacturerAddress = $db->escape(($_GET["text2"] != "" ? $_GET["text2"] : null));
+            $manufacturerEmail = $db->escape(($_GET["text3"] != "" ? $_GET["text3"] : null));
             $queryString = "INSERT INTO `product_manufacturer`(`manufacturer_name`, `manufacturer_address`, `manufacturer_email`) VALUES ('".$manufacturerName."', '".$manufacturerAddress."', '".$manufacturerEmail."')";
         }
         if(isset($queryString) && $queryString != ""){
@@ -33,16 +33,16 @@ $db = db::get();
 
     //////////////////////////////////////////////product inzertálása nagyba//////////////////////////////////////////////////////////////
     if(isset($_POST["saveButton"])){
-        $product_name = $_POST["product_name"];
-        $product_description = $_POST["product_description"];
-        $product_item_number = $_POST["product_item_number"];
-        $product_barcode = $_POST["product_barcode"];
-        $product_category = $_POST["product_category"];
-        $product_manufacturer = $_POST["product_manufacturer"];
-        $product_unit = $_POST["product_unit"];
-        $product_price = $_POST["product_price"];
-        $product_vat = $_POST["product_vat"];
-        $product_image = ($_FILES["productImage"]["name"] != "" ? $_FILES["productImage"]["name"] : "default.jpg");
+        $product_name = $db->escape($_POST["product_name"]);
+        $product_description = $db->escape($_POST["product_description"]);
+        $product_item_number = $db->escape($_POST["product_item_number"]);
+        $product_barcode = $db->escape($_POST["product_barcode"]);
+        $product_category = $db->escape($_POST["product_category"]);
+        $product_manufacturer = $db->escape($_POST["product_manufacturer"]);
+        $product_unit = $db->escape($_POST["product_unit"]);
+        $product_price = $db->escape($_POST["product_price"]);
+        $product_vat = $db->escape($_POST["product_vat"]);
+        $product_image = $db->escape(($_FILES["productImage"]["name"] != "" ? $_FILES["productImage"]["name"] : "default.jpg"));
 
             if(
                 empty($product_name) ||

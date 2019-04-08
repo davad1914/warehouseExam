@@ -8,13 +8,13 @@ $db = db::get();
 
 $pdfFileName = $_SESSION["username"]."-".rand(1,100)."-".date("Y-m-d").".pdf";
 
-$receiveQueryString = "INSERT INTO `receive`(`receive_user`, `receive_pdf`) VALUES (".$_SESSION["user_id"].", '".$pdfFileName."')";
+$receiveQueryString = "INSERT INTO `receive`(`receive_user`, `receive_pdf`) VALUES (".$db->escape($_SESSION["user_id"]).", '".$db->escape($pdfFileName)."')";
 $db->query($receiveQueryString);
 
 
 for($i = 1; $i < $_SESSION["count"]; $i++){
-    $queryString = 
-    " INSERT INTO `where_is_the_product`(`product_id`, `stock_id`, `bin_id`, `receive_id`, `quantity`) VALUES ((SELECT id FROM `products` WHERE product_item_number = '".$_SESSION["productNumber"][$i]."'),".$_SESSION["stockName"][$i]." ,".$_SESSION["bin"][$i].", (SELECT receive_id FROM `receive` WHERE `receive_pdf`='".$pdfFileName."' ), ".$_SESSION["productQuantity"][$i].");";
+    $queryString =
+    " INSERT INTO `where_is_the_product`(`product_id`, `stock_id`, `bin_id`, `receive_id`, `quantity`) VALUES ((SELECT id FROM `products` WHERE product_item_number = '".$db->escape($_SESSION["productNumber"][$i])."'),".$db->escape($_SESSION["stockName"][$i])." ,".$db->escape($_SESSION["bin"][$i]).", (SELECT receive_id FROM `receive` WHERE `receive_pdf`='".$db->escape($pdfFileName)."' ), ".$db->escape($_SESSION["productQuantity"][$i]).");";
     $db->query($queryString);
 }
 

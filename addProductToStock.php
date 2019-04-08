@@ -20,6 +20,7 @@
                 Termékek felvitele raktárba
             </div>
             <div class="card-body">
+
                 <div class="form-row">
                     <div class="form-group col-md">
                         <label for="productNumber">Cikkszám</label>
@@ -42,7 +43,7 @@
                         <label for="stockName">Raktár</label>
                         <select class="form-control" id="stockName" onchange="setAisle()">
                             <?php if(isset($stockPlaces) && count($stockPlaces) > 0) : ?>
-                                <option>Válassz raktárhelyet!</option>
+                                <option value="">Válassz raktárhelyet!</option>
                                 <?php foreach($stockPlaces as $listItem) : ?>
                                     <option value="<?php echo $listItem["stock_id"] ?>"><?php echo $listItem["stock_name"] ?></option>
                                 <?php endforeach; ?>
@@ -64,7 +65,7 @@
                                 <div class="form-group col-6 col-lg-3">
                                     <label for="rack">Álvány</label>
                                     <select name="rack" id="rack" class="form-control" onchange="setShelf()">
-                                        <option>Válassz utcát!</option>
+                                        <option value="">Válassz utcát!</option>
                                     </select>
                                     <small id="smallRack"></small>
                                 </div>

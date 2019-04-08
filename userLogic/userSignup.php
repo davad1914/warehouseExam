@@ -3,9 +3,9 @@
 if(isset($_GET["action"]) && $_GET["action"] != ""){
     if (isset($_GET["text"]) && $_GET["text"] != "" && $_GET["action"] == "company") {
         require_once "../includes/db.php";
-        $modalInput = $_GET["text"];
-        $modalInput2 = $_GET["text2"];
-        $modalInput3 = $_GET["text3"];
+        $modalInput = $db->escape($_GET["text"]);
+        $modalInput2 = $db->escape($_GET["text2"]);
+        $modalInput3 = $db->escape($_GET["text3"]);
         $queryString = "INSERT INTO `own_companies`(`company_name`, `company_address`, `company_tax_number`) VALUES ('".$modalInput."', '".$modalInput2."', '".$modalInput3."')";
     }else{
         $queryString = "";
@@ -22,16 +22,16 @@ if(isset($_GET["action"]) && $_GET["action"] != ""){
 if(isset($_POST["registerButton"]))
 {
             require_once "../includes/db.php";
-            $username = $_POST["username"];
-            $lastName = $_POST["lastName"];
-            $firstName = $_POST["firstName"];
-            $password = $_POST["passwordInput"];
-            $passwordAgain = $_POST["passwordAgainInput"];
-            $email = $_POST["emailInput"];
-            $company = $_POST["companySelect"];
-            $role = $_POST["roleSelect"];
-            $profilePicture = $_POST["userPictureInput"];
-            $phoneNumber = $_POST["phoneNumberInput"];
+            $username = $db->escape($_POST["username"]);
+            $lastName = $db->escape($_POST["lastName"]);
+            $firstName = $db->escape($_POST["firstName"]);
+            $password = $db->escape($_POST["passwordInput"]);
+            $passwordAgain = $db->escape($_POST["passwordAgainInput"]);
+            $email = $db->escape($_POST["emailInput"]);
+            $company = $db->escape($_POST["companySelect"]);
+            $role = $db->escape($_POST["roleSelect"]);
+            $profilePicture = $db->escape($_POST["userPictureInput"]);
+            $phoneNumber = $db->escape($_POST["phoneNumberInput"]);
 
                 if(
                     empty($username) ||

@@ -30,26 +30,6 @@ $invoice->set("company", [
 	"info@lightpear.com"
 ]);
 
-// 2B - INVOICE INFO
-$invoice->set("invoice", [
-	["Számla száma", "CB-123-456"],
-	["Kiállítva", date("Y-m-d")]
-]);
-
-// 2C - BILL TO
-$invoice->set("billto", [
-	$userData["username"],
-	"Street Address",
-	"City, State, Zip"
-]);
-
-// 2D - SHIP TO
-$invoice->set("shipto", [
-	"Customer Name",
-	"Street Address",
-	"City, State, Zip"
-]);
-
 // 2E - ITEMS
 // YOU CAN JUST DUMP THE ENTIRE ARRAY IN USING SET, BUT HERE IS HOW TO ADD ONE AT A TIME...
 for($i = 1; $i < $_SESSION["count"]; $i++){
@@ -77,8 +57,8 @@ $invoice->set("totals", [
 
 // 2G - NOTES, IF ANY
 $invoice->set("notes", [
-	"Ez a számla a bevételezési bizonylatot helyettesíti!",
-	"A rendzser állítja ki automatikusan!"
+	"Ez a fájl a bevételezési bizonylatot helyettesíti,",
+	"a rendzser állítja ki automatikusan!"
 ]);
 
 

@@ -210,32 +210,46 @@ function setBin(){
 
 //Az összes terméket amit eddig felvettünk tárolja session-ben
 function allData(){
-    var params = 
-            "productNumber=" + $('#productNumber').val() + 
+    if(
+        $('#productNumber').val() != "" &&
+        $('#productQuantity').val() != "" &&
+        $('#stockName').val() != "" &&
+        $('#aisle').val() != "" &&
+        $('#rack').val() != "" &&
+        $('#shelf').val() != "" &&
+        $('#bin').val() != ""
+    ){
+        var params =
+            "productNumber=" + $('#productNumber').val() +
             "&productQuantity=" + $('#productQuantity').val() +
             "&stockName=" + $('#stockName').val() +
-            "&aisle=" + $('#aisle').val() + 
-            "&rack=" + $('#rack').val() + 
-            "&shelf=" + $('#shelf').val() + 
+            "&aisle=" + $('#aisle').val() +
+            "&rack=" + $('#rack').val() +
+            "&shelf=" + $('#shelf').val() +
             "&bin=" + $('#bin').val() +
             "&count=" + count +
             "&action=insertToSession";
-    //console.log($('#stockName').val());  //consleba kiíratja a raktárhelynek a számát/nevét
-    var httpc = new XMLHttpRequest(); // simplified for clarity
-    var url = "stockLogic/insertStockModal.php";
-    httpc.open("POST", url, true); // sending as POST
+        //console.log($('#stockName').val());  //consleba kiíratja a raktárhelynek a számát/nevét
+        var httpc = new XMLHttpRequest(); // simplified for clarity
+        var url = "stockLogic/insertStockModal.php";
+        httpc.open("POST", url, true); // sending as POST
 
-    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    httpc.onreadystatechange = function() { //Call a function when the state changes.
-        if(httpc.readyState == 4 && httpc.status == 200) { // complete and no errors
-            //alert(httpc.responseText); // some processing here, or whatever you want to do with the response
-            $('#inputEnd').removeClass('d-none');
-            //alert(this.responseText);
-            count++;
-        }
-    };
-    httpc.send(params);
+        httpc.onreadystatechange = function() { //Call a function when the state changes.
+            if(httpc.readyState == 4 && httpc.status == 200) { // complete and no errors
+                //alert(httpc.responseText); // some processing here, or whatever you want to do with the response
+                $('#inputEnd').removeClass('d-none');
+                //alert(this.responseText);
+                count++;
+            }
+        };
+        httpc.send(params);
+    }else {
+        ///////////////////////////////////////////////////////////!!!!!///////////////////////////////
+        errorModal2();
+        console.log("siker");
+    }
 }
 
 //////////////////////////////////////////////modal-ok//////////////////////////////////////////////////////////////////
@@ -333,6 +347,14 @@ function errorModal(){
         title: 'Hiba',
         text: 'Töltsd ki a cikkszám mezőt!'
       });
+}
+
+function errorModal2(){
+    Swal.fire({
+        type: 'error',
+        title: 'Hiba',
+        text: 'Minden mező kitöltése kötelező!'
+    });
 }
 
 function warningModal(){

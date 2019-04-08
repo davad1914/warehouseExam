@@ -8,7 +8,7 @@ $quantity = $db->getRow($selectString);
 
 $allQuantity = (int)($_SESSION["basketQuantity"][$_GET["item"]]) + (int)($quantity['quantity']);
 
-$updateString = "UPDATE `where_is_the_product` SET `quantity`=".$allQuantity." WHERE id=".$_SESSION["basketProductId"][$_GET["item"]];
+$updateString = "UPDATE `where_is_the_product` SET `quantity`=".$db->escape($allQuantity)." WHERE id=".$db->escape($_SESSION["basketProductId"][$_GET["item"]]);
 $db->query($updateString);
 
 $_SESSION["basketCount"] = (int)($_SESSION["basketCount"]) - 1;
