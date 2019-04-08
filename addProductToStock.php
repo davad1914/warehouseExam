@@ -8,7 +8,8 @@
 
     //echo var_dump($_SESSION["productNumber"]);
 ?>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    <script src="sweetAlert2/dist/sweetalert2.all.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="stockLogic/extraForms.js"></script>
     <script src="stockLogic/addProductToStock.js"></script>
