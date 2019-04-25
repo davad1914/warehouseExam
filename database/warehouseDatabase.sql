@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Ápr 08. 22:58
+-- Létrehozás ideje: 2019. Ápr 25. 12:37
 -- Kiszolgáló verziója: 10.1.38-MariaDB
 -- PHP verzió: 7.3.2
 
@@ -57,31 +57,6 @@ INSERT INTO `aisle` (`aisle_id`, `aisle_stock_place`, `aisle_number`) VALUES
 (59, 2, 'sadfwaef'),
 (60, 3, 'Laptop utca'),
 (61, 4, 'sziacica');
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `bin`
---
-
-CREATE TABLE `bin` (
-  `bin_id` int(11) NOT NULL,
-  `bin_shelf` int(11) NOT NULL,
-  `bin_number` varchar(255) COLLATE utf8_hungarian_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `bin`
---
-
-INSERT INTO `bin` (`bin_id`, `bin_shelf`, `bin_number`) VALUES
-(1, 4, 'asdDoboz'),
-(2, 6, 'hehe'),
-(3, 7, 'Nemadomoda'),
-(4, 8, 'SDFGER'),
-(5, 9, 'fdgdf'),
-(6, 10, 'elenyésző doboz'),
-(7, 11, 'kek');
 
 -- --------------------------------------------------------
 
@@ -150,14 +125,6 @@ CREATE TABLE `invoice` (
   `invoice_pdf` varchar(255) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
---
--- A tábla adatainak kiíratása `invoice`
---
-
-INSERT INTO `invoice` (`invoice_id`, `invoice_user`, `invoice_customer_name`, `delivery_country`, `delivery_address`, `invoice_date`, `invoice_pdf`) VALUES
-(2, 7, 'Dávid Lakó', 'Magyarország', '2376-Hernád-Kossuth tér, 1', '2019-03-29 11:42:11', 'invoice-anyad-85-2019-03-29-11-42-11.pdf'),
-(3, 7, 'Dávid Lakó', 'Magyarország', '2376-Hernád-Kossuth tér, 1', '2019-03-29 11:56:48', 'invoice-anyad-51-2019-03-29-11-56-48.pdf');
-
 -- --------------------------------------------------------
 
 --
@@ -200,30 +167,6 @@ CREATE TABLE `products` (
   `product_vat` varchar(254) COLLATE utf8_hungarian_ci NOT NULL,
   `product_image_url` varchar(254) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `products`
---
-
-INSERT INTO `products` (`id`, `product_name`, `product_description`, `product_item_number`, `product_barcode`, `product_category`, `product_manufacturer`, `product_unit`, `product_price`, `product_vat`, `product_image_url`) VALUES
-(1, 'Bosch', 'qwefwqef', '12341234', '21341234', 1, 1, 1, 100000, '31%', 'img/Bosch_WAB20262BY.jpg'),
-(2, 'asdasd', 'asdasd', '1231ewdf234', '234123', 5, 16, 4, 123214, '123%', 'img/{56A5DB66-2646-4BE1-AEFA-BFE8555DD379}.png.jpg'),
-(3, 'erwefwef', 'adsfgreag', '2343ewrew234', '3242341231234', 5, 16, 1, 234432, '23%', 'img/blog-kannas-bor-1080x675.png'),
-(4, 'Kiscsalódás', 'dtzjhrdsht', '43564356', '4564356', 5, 16, 1, 345433, '45%', 'img/kecske.jpg'),
-(5, 'Fűnyíró', 'srhstbrts', '1234567', '2465235345234', 5, 15, 1, 20000, '27%', 'img/139975_2.jpg'),
-(6, 'Minden Jó', 'sfgafgfe', '23423', '423423', 6, 16, 1, 342234, '4444%', 'img/p20-lite-blk-1.jpg'),
-(7, 'Acer laptop', 'sdgafhgr', '9876543210', '234523423', 5, 15, 1, 12000, '23%', 'img/ford_mustang_v8_adv_1_wheels-1920x1080.jpg'),
-(8, 'HP alptop', 'qwfqwefqwef', '324234', '234234', 5, 15, 1, 20000, '2321%', 'img/HP-250-E8D87PA-Laptop-Core-i3-3rd-Gen4-GB500-GBDOS.jpg'),
-(9, 'Acer laptop ASPIRE 5', 'sdvfravf', '123456789123456789', '234234234', 5, 15, 1, 10222443, '45%', 'img/06-acer-aspire-e15-e5-576g-5762.jpg'),
-(10, 'Okirat bazár', 'weefwefwef', '234324', '23423', 1, 16, 1, 4234234, '234234%', 'img/59a8f07754e7108313b47869704a8d24.jpg'),
-(11, 'Imbusz kulcs szett', 'ergegadfg', '23412342134', '123124234234', 5, 16, 1, 2147483647, '27%', 'img/bbb-btl-118-hexset-imbuszkulcs.jpg'),
-(12, 'Audi r8 sporline', 'ergergergerg', '272727', '234234', 6, 1, 1, 7000000, '27%', 'img/4k-wallpaper-audi-audi-r8-1402787.jpg'),
-(13, 'Porsche 911 turbo', 'sgwergwerg', '12342413', '213412342134', 6, 15, 17, 40000000, '27%', 'img/eric-saunders-662582-unsplash.jpg'),
-(14, 'Fenyő erdő', 'aegaergwqefgqwef', '2234123412', '1341234', 5, 16, 1, 22, '123123123%', 'img/markos-mant-580527-unsplash.jpg'),
-(15, 'ersfvreovpőeomrv', 'wqfwefwqef', '213478123478wdghfji2b89', '23421398271359872139', 5, 16, 17, 23123, '33%', 'img/20181203_085409.jpg'),
-(16, 'wefwqefqwefsdc wqcwef', 'wfqwefqwefwefq', '2342334wdfsdc ntegwr', '4423234234', 5, 15, 1, 333333, '425%', 'img/20180925_162528.jpg'),
-(17, 'wqfeqwefqwefqwef', 'srvervewvrwervwerh', 'wefqw24wdqqwd', '234234', 5, 15, 1, 234234, '33%', 'img/Névtelen.png'),
-(18, 'efthldfgsdasd', 'werwerqwefsayxgfl', 'ááéélj,il', '65456567899999', 6, 15, 4, 345345, '55%', 'img/gx830pqzdhl21.jpg');
 
 -- --------------------------------------------------------
 
@@ -306,40 +249,6 @@ CREATE TABLE `receive` (
   `receive_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `receive_pdf` text COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `receive`
---
-
-INSERT INTO `receive` (`receive_id`, `receive_user`, `receive_date`, `receive_pdf`) VALUES
-(1, 7, '2019-03-19 10:39:34', 'hehehe'),
-(2, 7, '2019-03-21 11:28:45', 'invoice/receive/anyad-49-2019-03-21.pdf'),
-(3, 7, '2019-03-21 11:58:55', 'invoice/receive/anyad-91-2019-03-21.pdf'),
-(4, 7, '2019-03-21 12:00:24', 'invoice/receive/anyad-50-2019-03-21.pdf'),
-(5, 7, '2019-03-21 13:15:20', 'invoice/receive/anyad-68-2019-03-21.pdf'),
-(6, 7, '2019-03-21 15:37:59', 'invoice/receive/anyad-2-2019-03-21.pdf'),
-(7, 7, '2019-03-21 15:40:56', 'invoice/receive/anyad-6-2019-03-21.pdf'),
-(8, 7, '2019-03-21 15:41:47', 'invoice/receive/anyad-72-2019-03-21.pdf'),
-(9, 7, '2019-03-21 15:43:05', 'invoice/receive/anyad-99-2019-03-21.pdf'),
-(10, 7, '2019-03-21 15:43:44', 'invoice/receive/anyad-14-2019-03-21.pdf'),
-(11, 7, '2019-03-21 15:43:46', 'invoice/receive/anyad-46-2019-03-21.pdf'),
-(12, 7, '2019-03-21 15:43:46', 'invoice/receive/anyad-90-2019-03-21.pdf'),
-(13, 7, '2019-03-21 15:43:59', 'invoice/receive/anyad-21-2019-03-21.pdf'),
-(14, 7, '2019-03-21 15:44:40', 'invoice/receive/anyad-12-2019-03-21.pdf'),
-(15, 7, '2019-03-21 15:44:41', 'invoice/receive/anyad-59-2019-03-21.pdf'),
-(16, 7, '2019-03-21 15:44:56', 'invoice/receive/anyad-73-2019-03-21.pdf'),
-(17, 7, '2019-03-21 15:45:19', 'invoice/receive/anyad-60-2019-03-21.pdf'),
-(18, 7, '2019-03-21 15:47:42', 'anyad-96-2019-03-21.pdf'),
-(19, 7, '2019-03-21 15:48:37', 'anyad-85-2019-03-21.pdf'),
-(20, 7, '2019-03-21 15:52:25', 'anyad-10-2019-03-21.pdf'),
-(21, 7, '2019-03-24 15:05:06', 'anyad-72-2019-03-24.pdf'),
-(22, 7, '2019-03-24 15:06:12', 'anyad-97-2019-03-24.pdf'),
-(23, 7, '2019-03-25 11:49:53', 'anyad-65-2019-03-25.pdf'),
-(24, 7, '2019-03-27 13:20:53', 'anyad-45-2019-03-27.pdf'),
-(25, 7, '2019-03-27 13:22:41', 'anyad-87-2019-03-27.pdf'),
-(26, 7, '2019-03-27 14:40:20', 'anyad-20-2019-03-27.pdf'),
-(27, 9, '2019-04-08 21:41:47', 'admin-79-2019-04-08.pdf'),
-(28, 9, '2019-04-08 22:53:33', 'admin-60-2019-04-08.pdf');
 
 -- --------------------------------------------------------
 
@@ -454,6 +363,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `user_full_name`, `user_email`, `user_password`, `user_role`, `user_company`, `user_image_url`, `user_phone_number`) VALUES
+(1, 'admin', 'admin', 'admin@admin.hu', '$2y$10$t3TMj2EK5ESLeAYNXF.kW.2DIFo61wIpcZGBBAZ5hkB7ku5AD29aS', 1, 1, 'admin', '06301245428'),
 (7, 'adminsdfsd', 'admin user', 'admin@admin.com', '*4ACFE3202A5FF5CF467898FC58AAB1D615029441', 1, 1, 'zarovizsga.PNG', '1234567'),
 (9, 'admin', 'admin admin', 'admin@admin.hu', '$2y$10$t3TMj2EK5ESLeAYNXF.kW.2DIFo61wIpcZGBBAZ5hkB7ku5AD29aS', 1, 1, '06-acer-aspire-e15-e5-576g-5762.jpg', '+36704356543');
 
@@ -521,13 +431,6 @@ INSERT INTO `where_is_the_product` (`id`, `product_id`, `stock_id`, `bin_id`, `r
 ALTER TABLE `aisle`
   ADD PRIMARY KEY (`aisle_id`),
   ADD KEY `aisle_stock_place` (`aisle_stock_place`);
-
---
--- A tábla indexei `bin`
---
-ALTER TABLE `bin`
-  ADD PRIMARY KEY (`bin_id`),
-  ADD KEY `bin_shelf` (`bin_shelf`);
 
 --
 -- A tábla indexei `companies`
@@ -646,12 +549,6 @@ ALTER TABLE `aisle`
   MODIFY `aisle_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
--- AUTO_INCREMENT a táblához `bin`
---
-ALTER TABLE `bin`
-  MODIFY `bin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
 -- AUTO_INCREMENT a táblához `companies`
 --
 ALTER TABLE `companies`
@@ -667,7 +564,7 @@ ALTER TABLE `delivery`
 -- AUTO_INCREMENT a táblához `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `own_companies`
@@ -679,7 +576,7 @@ ALTER TABLE `own_companies`
 -- AUTO_INCREMENT a táblához `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `product_category`
@@ -703,7 +600,7 @@ ALTER TABLE `racks`
 -- AUTO_INCREMENT a táblához `receive`
 --
 ALTER TABLE `receive`
-  MODIFY `receive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `receive_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `role`
@@ -744,12 +641,6 @@ ALTER TABLE `where_is_the_product`
 --
 ALTER TABLE `aisle`
   ADD CONSTRAINT `aisle_ibfk_1` FOREIGN KEY (`aisle_stock_place`) REFERENCES `stock_places` (`stock_id`);
-
---
--- Megkötések a táblához `bin`
---
-ALTER TABLE `bin`
-  ADD CONSTRAINT `bin_ibfk_1` FOREIGN KEY (`bin_shelf`) REFERENCES `shelf` (`shelf_id`);
 
 --
 -- Megkötések a táblához `delivery`
