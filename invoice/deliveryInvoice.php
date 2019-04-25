@@ -53,7 +53,7 @@ $invoice->set("shipto", [
 
 // 2E - ITEMS
 // YOU CAN JUST DUMP THE ENTIRE ARRAY IN USING SET, BUT HERE IS HOW TO ADD ONE AT A TIME...
-for($i = 1; $i < $_SESSION["basketCount"]; $i++){
+for($i = 1; $i < $_SESSION["basketCount"] + 1; $i++){
     $productsInfoQuery = "SELECT * FROM products WHERE id=(SELECT product_id FROM where_is_the_product WHERE where_is_the_product.id = ".$_SESSION['basketProductId'][$i].")";
     $productInfo = $db->getRow($productsInfoQuery);
     $invoice->add("items", [$_SESSION["basketProduct"][$i],"", $_SESSION["basketQuantity"][$i], $productInfo['product_price']." Ft", $productInfo['product_price'] * $_SESSION["basketQuantity"][$i]." Ft"]);

@@ -21,7 +21,7 @@
         $invoiceIdString = "SELECT invoice_id FROM invoice WHERE invoice_pdf='".$pdfFileName."'";
         $invoiceId = $db->getRow($invoiceIdString);
 
-        for ($i = 1; $i < $_SESSION["basketCount"]; $i++) {
+        for ($i = 1; $i < $_SESSION["basketCount"] + 1; $i++) {
 
             $productIdQueryString = "SELECT product_id FROM where_is_the_product WHERE id =" . $_SESSION['basketProductId'][$i];
             $productIdResult = $db->getRow($productIdQueryString);
@@ -50,10 +50,3 @@
     unset($_SESSION["basketQuantity"]);
     unset($_SESSION["basketCount"]);
     unset($_SESSION["basketAllProductQuantity"]);
-
-    //var_dump($pdfFileName);
-    //var_dump($invoiceInsertString);
-    //var_dump($invoiceIdString);
-    //var_dump($productIdQueryString);
-    //var_dump($insertQueryString);
-    //var_dump($invoiceId);

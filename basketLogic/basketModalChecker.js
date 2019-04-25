@@ -113,7 +113,7 @@ $(document).ready(function(){
                 }
         }
 
-        console.log(isChecked);
+        //console.log(isChecked);
         //console.log(error);
         if(error === 0){
             //ajaxal elküldjük az adatokat
